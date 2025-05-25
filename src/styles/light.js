@@ -12,5 +12,8 @@ export const lightTheme = {
   '--color-text-muted': '#B1B1B1',
   '--color-text-accent': '#718EBF',
 
+  '--color-dark-gray':'#374151',
+  '--color-light-gray':'#f3f4f6',
+
   '--color-border': '#E5E7EB',
 };
