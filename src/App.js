@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className='bg-[var(--color-surface)]'>
       {/* <div className="bg-bg text-textMain min-h-screen p-8">
         <h1 className="text-3xl font-bold">مرحبا بك</h1>
         <h1 className="text-4xl font-bold">مثال على التبديل بين الثيمات</h1>
