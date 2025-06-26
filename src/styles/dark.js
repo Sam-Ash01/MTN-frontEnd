@@ -13,4 +13,7 @@ export const darkTheme = {
   '--color-text-accent': '#718EBF',
 
   '--color-border': '#374151',
+
+  '--color-cancel-back-btn-txt': '#E5E7EB',
+  '--color-cancel-back-btn-hover': '#4B5563',
 };
