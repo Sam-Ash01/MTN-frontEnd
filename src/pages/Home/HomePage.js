@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaStar, FaReply, FaQuestion } from 'react-icons/fa';
 import { FiChevronDown } from "react-icons/fi";
 import StatCard from '../../components/common/cards/StatCard';
 import FilterTabs from '../../components/common/filters/FilterTabs';
 import DynamicTable from '../../components/common/tables/DynamicTable';
+import OutlineButton from '../../components/common/buttons/OutlineButton';
+import Pagination from '../../components/common/pagination/Pagination';
+import { StatusBadge } from '../../components/common/badges/StatusBadge';
+
+
+
+const itemsPerPage = 2; // Or any number you need per page
 
 const dummyData = [
   {
@@ -29,28 +37,39 @@ const dummyData = [
   },
 ];
 
-const statusColors = {
-  Open: {
-    bg: 'var(--color-status-open-bg)',
-    text: 'var(--color-status-open)'
-  },
-  Closed: {
-    bg: 'var(--color-status-closed-bg)',
-    text: 'var(--color-status-closed)'
-  },
-  Pending: {
-    bg: 'var(--color-status-pending-bg)',
-    text: 'var(--color-status-pending)'
-  },
+const ticketStatusColors = {
+  Open: { bg: 'var(--color-status-open-bg)', text: 'var(--color-status-open)' },
+  Closed: { bg: 'var(--color-status-closed-bg)', text: 'var(--color-status-closed)' },
+  Pending: { bg: 'var(--color-status-pending-bg)', text: 'var(--color-status-pending)' },
 };
+
 
 const HomePage = () => {
   const [selectedTab, setSelectedTab] = useState('All Inquiries');
+  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
+
+  const handleRowClick = (row) => {
+    navigate(`/details/${row.id}`); // or any route pattern you prefer
+  };
 
   const filteredData =
     selectedTab === 'All Inquiries'
       ? dummyData
       : dummyData.filter((item) => item.status === selectedTab);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const paginatedData = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // Reset to page 1 if filter changes
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedTab]);
+
+
 
   const columns = [
     { header: 'ID', accessor: 'id' },
@@ -59,15 +78,7 @@ const HomePage = () => {
       header: 'Status',
       accessor: 'status',
       cell: (value) => (
-        <span
-          className="px-3 py-1 rounded-full text-xs font-medium"
-          style={{
-            backgroundColor: statusColors[value]?.bg,
-            color: statusColors[value]?.text
-          }}
-        >
-          {value}
-        </span>
+        <StatusBadge value={value} colorMap={ticketStatusColors} />
       ),
     },
     { header: 'Trainer Name', accessor: 'trainer' },
@@ -101,16 +112,7 @@ const HomePage = () => {
       header: 'Delete',
       accessor: 'delete',
       cell: () => (
-        <button
-          className="px-3 py-1 rounded-full text-sm"
-          style={{
-            border: '1px solid var(--color-danger)',
-            color: 'var(--color-danger)',
-            backgroundColor: 'transparent'
-          }}
-        >
-          Move to trash
-        </button>
+        <OutlineButton title="Move to trash" color="danger" />
       ),
     },
   ];
@@ -121,7 +123,7 @@ const HomePage = () => {
         Home
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
         <StatCard
           title="Open answered"
           count={12750}
@@ -156,8 +158,24 @@ const HomePage = () => {
       />
 
       {/* Table */}
-      <DynamicTable columns={columns} data={filteredData} />
-    </div>
+      <div className="relative w-full">
+        <DynamicTable
+          columns={columns}
+          data={paginatedData}
+          onRowClick={handleRowClick}
+        />
+
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        )}
+      </div>
+
+
+    </div >
   );
 }
 
