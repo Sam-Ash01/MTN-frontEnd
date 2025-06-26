@@ -1,7 +1,7 @@
 const FilterTabs = ({ tabs = [], selected, onChange }) => {
   return (
     <div 
-      className="flex space-x-4 mt-10 border-b" 
+      className="flex space-x-4 mt-2 border-b" 
       style={{ borderColor: 'var(--color-border)' }}
     >
       {tabs.map((tab) => (

@@ -1,8 +1,9 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
 import { FaMoon, FaUser, FaGlobe } from "react-icons/fa";
+
 const NavBar = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="h-16 flex items-center justify-between px-7 py-1 bg-[var(--color-bg)] shadow-md w-full">
@@ -51,7 +52,7 @@ const NavBar = () => {
             <FaGlobe className="text-[var(--color-dark-gray)] hover:text-[var(--color-primary)] cursor-pointer" />
           </div>
         )}
-        </div>
+      </div>
     </header>
   );
 };
