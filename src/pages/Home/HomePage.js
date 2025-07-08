@@ -9,9 +9,7 @@ import OutlineButton from '../../components/common/buttons/OutlineButton';
 import Pagination from '../../components/common/pagination/Pagination';
 import { StatusBadge } from '../../components/common/badges/StatusBadge';
 
-
-
-const itemsPerPage = 2; // Or any number you need per page
+const itemsPerPage = 7;
 
 const dummyData = [
   {
@@ -30,6 +28,41 @@ const dummyData = [
   },
   {
     id: '03',
+    title: 'هل يتم تفعيل..',
+    status: 'Pending',
+    trainer: 'Mhd',
+    category: 'TV',
+  },
+  {
+    id: '04',
+    title: 'هل يتم تفعيل..',
+    status: 'Pending',
+    trainer: 'Mhd',
+    category: 'TV',
+  },
+  {
+    id: '05',
+    title: 'هل يتم تفعيل..',
+    status: 'Closed',
+    trainer: 'Nour',
+    category: 'MTN Speed',
+  },
+  {
+    id: '06',
+    title: 'هل يتم تفعيل..',
+    status: 'Pending',
+    trainer: 'Mhd',
+    category: 'TV',
+  },
+  {
+    id: '07',
+    title: 'هل يتم تفعيل..',
+    status: 'Pending',
+    trainer: 'Mhd',
+    category: 'TV',
+  },
+  {
+    id: '08',
     title: 'هل يتم تفعيل..',
     status: 'Pending',
     trainer: 'Mhd',
@@ -173,8 +206,6 @@ const HomePage = () => {
           />
         )}
       </div>
-
-
     </div >
   );
 }

@@ -4,11 +4,9 @@ import DynamicTable from '../../components/common/tables/DynamicTable';
 import Pagination from '../../components/common/pagination/Pagination';
 import OutlineButton from '../../components/common/buttons/OutlineButton';
 import { StatusBadge } from '../../components/common/badges/StatusBadge';
-import FAB from '../../components/common/buttons/FAB';
-import CreateUserModal from '../../components/modals/createUserModal/CreateUserModal';
-import EditUserModal from '../../components/modals/editUserModal/EditUserModal';
-
-
+import FloatingActionButton from '../../components/common/buttons/FloatingActionButton';
+import UserFormModal from '../../components/modals/UserFormModal';
+import UserEditModal from '../../components/modals/UserEditModal';
 
 const tabs = ['All users', 'Supervisors', 'Trainers', 'Users', 'Blocked Users'];
 
@@ -74,8 +72,15 @@ const UsersPage = () => {
   const [selectedTab, setSelectedTab] = useState('All users');
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+
+
+  const handleAddUser = (formData) => {
+    console.log('New User:', formData);
+    // You can call API here or update state
+  };
+
 
   const filtered =
     selectedTab === 'All users'
@@ -90,11 +95,18 @@ const UsersPage = () => {
   );
 
   const handleRowClick = (row) => {
-    window.location.href = `/users/${row.name.toLowerCase()}`;
+    // window.location.href = `/users/${row.name.toLowerCase()}`;
   };
-  const handleEdit = (user) => {
-    setSelectedUser(user);
-    setEditModalOpen(true);
+  const handleEdit = (row) => {
+    console.log('Edit user:', row);
+    setSelectedUser(row);
+    setIsEditOpen(true);
+  };
+
+  const handleUpdateUser = (updatedUserData) => {
+    console.log('Updated user:', updatedUserData);
+    setIsEditOpen(false);
+    // Optionally update the user list or send API request here
   };
 
   const handleBlockToggle = (row) => {
@@ -143,8 +155,8 @@ const UsersPage = () => {
         <OutlineButton
           title="Edit"
           color="secondary"
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={() => {
+            console.log('Edit button clicked for:', row);
             handleEdit(row);
           }}
         />
@@ -168,7 +180,7 @@ const UsersPage = () => {
   ];
 
   return (
-    <div className="p-6">
+    <div className="px-6 pt-6">
       <h1 className="text-2xl font-bold mb-2 text-[var(--color-text-main)]">Users</h1>
 
       <FilterTabs
@@ -191,28 +203,23 @@ const UsersPage = () => {
         onPageChange={setCurrentPage}
       />
 
-      <FAB onClick={() => setIsModalOpen(true)} />
+      <FloatingActionButton
+        onClick={() => setIsModalOpen(true)}
+        label="Add User"
+      />
 
-      <CreateUserModal
+      <UserFormModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onCreate={(newUser) => {
-          console.log('User created:', newUser);
-          setIsModalOpen(false);
-        }}
+        onSubmit={handleAddUser}
       />
 
-      <EditUserModal
-        isOpen={editModalOpen}
-        onClose={() => setEditModalOpen(false)}
-        userData={selectedUser}
-        onUpdate={(updatedUser) => {
-          console.log('Updated user:', updatedUser);
-          setEditModalOpen(false);
-          // يمكنك تحديث الحالة لاحقًا لإعادة تحميل الجدول
-        }}
+      <UserEditModal
+        isOpen={isEditOpen}
+        user={selectedUser}
+        onClose={() => setIsEditOpen(false)}
+        onSubmit={handleUpdateUser} 
       />
-
     </div>
   );
 };
