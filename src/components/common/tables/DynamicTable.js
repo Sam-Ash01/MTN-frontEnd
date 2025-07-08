@@ -1,4 +1,3 @@
-// Updated DynamicTable.jsx
 const DynamicTable = ({ columns, data, onRowClick }) => {
     return (
         <div

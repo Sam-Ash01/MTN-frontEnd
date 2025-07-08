@@ -1,4 +1,3 @@
-// src/store/slices/authSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -7,7 +6,8 @@ const initialState = {
     name: '',
     email: '',
     role_id: 1,
-    role_name: '', // اختياري لو بتحبي تسهلي القراءة
+    role_name: '',
+    token: null,
   },
   isAuthenticated: false,
 };

@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 const Sections = () => {
+
   return (
-    <div>
+    <div >
       Sections
     </div>
-  )
-}
+  );
+};
 
-export default Sections
+export default Sections;

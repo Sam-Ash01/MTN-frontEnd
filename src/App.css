@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.bg-category-one {
+  background-color: var(--color-category-one);
+}
+.bg-category-two {
+  background-color: var(--color-category-two);
+}
+.bg-category-three {
+  background-color: var(--color-category-three);
+}
+
+/* جعل الـ scrollbar يظهر بشكل نحيف ومرئي */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* أو لون خفيف جدًا */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* اللون الأساسي للمقبض */
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* لون عند التحويم */
+}
+
+.category-selected {
+  outline: 2px solid #3b82f6;
+  background-color: #e0f2fe;
+}
+

@@ -5,8 +5,10 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import './index.css'
+import axios from 'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+axios.defaults.withCredentials = true;
 root.render(
   <React.StrictMode>
     <Provider store={store}>

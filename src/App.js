@@ -13,7 +13,9 @@ import Reports from './pages/Reports/Reports';
 import Users from './pages/Users/Users';
 import HomePage from './pages/Home/HomePage';
 import AppRoutes from './routes/AppRoutes';
-
+import Layout from './layouts/Layout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   useEffect(() => {
@@ -21,28 +23,31 @@ function App() {
   }, []);
 
   return (
-    <div className='bg-[var(--color-surface)]'>
-      {/* <div className="bg-bg text-textMain min-h-screen p-8">
-        <h1 className="text-3xl font-bold">مرحبا بك</h1>
-        <h1 className="text-4xl font-bold">مثال على التبديل بين الثيمات</h1>
-        <p className="text-textMuted">يمكنك التبديل بين الوضع الفاتح والغامق أدناه.</p>
-        <ThemeToggle />
-      </div> */}
-      {/* <Login/> */}
-      
-      <div className="flex flex-col h-screen">
-      <Navbar /> {/* Fixed height (e.g., 64px) */}
-      <div className="flex flex-1 overflow-hidden"> {/* Takes remaining space */}
-        <Router>
-          <Sidebar /> {/* Will stretch to full remaining height */}
-          <main className="flex-1 p-6 overflow-auto"> {/* Scrollable content */}
-            <AppRoutes/>
-          </main>
-        </Router>
-      </div>
-    </div>
-      
-    </div>
+    // <div className='bg-[var(--color-surface)]'>
+    //   <div className="bg-bg text-textMain min-h-screen p-8">
+    //     <h1 className="text-3xl font-bold">مرحبا بك</h1>
+    //     <h1 className="text-4xl font-bold">مثال على التبديل بين الثيمات</h1>
+    //     <p className="text-textMuted">يمكنك التبديل بين الوضع الفاتح والغامق أدناه.</p>
+    //     <ThemeToggle />
+    //   </div>
+    // {/* </div> */}
+    <>
+      <Router>
+        <Layout />
+      </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+    </>
+
   );
 }
 

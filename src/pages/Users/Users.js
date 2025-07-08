@@ -4,6 +4,11 @@ import DynamicTable from '../../components/common/tables/DynamicTable';
 import Pagination from '../../components/common/pagination/Pagination';
 import OutlineButton from '../../components/common/buttons/OutlineButton';
 import { StatusBadge } from '../../components/common/badges/StatusBadge';
+import FAB from '../../components/common/buttons/FAB';
+import CreateUserModal from '../../components/modals/createUserModal/CreateUserModal';
+import EditUserModal from '../../components/modals/editUserModal/EditUserModal';
+
+
 
 const tabs = ['All users', 'Supervisors', 'Trainers', 'Users', 'Blocked Users'];
 
@@ -59,7 +64,7 @@ const users = [
   },
 ];
 
-const userStatusColors  = {
+const userStatusColors = {
   Active: { bg: 'var(--color-status-open-bg)', text: 'var(--color-status-open)' },
   Suspended: { bg: 'var(--color-status-closed-bg)', text: 'var(--color-status-closed)' },
   Inactive: { bg: 'var(--color-status-pending-bg)', text: 'var(--color-status-pending)' },
@@ -68,15 +73,16 @@ const userStatusColors  = {
 const UsersPage = () => {
   const [selectedTab, setSelectedTab] = useState('All users');
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const filtered =
     selectedTab === 'All users'
       ? users
       : selectedTab === 'Blocked Users'
         ? users.filter((u) => u.status === 'Blocked' || u.status === 'Inactive')
-        : users.filter((u) => u.role === selectedTab.slice(0, -1)); // "Supervisors" → "Supervisor"
-
+        : users.filter((u) => u.role === selectedTab.slice(0, -1));
   const pageSize = 5;
   const paginated = filtered.slice(
     (currentPage - 1) * pageSize,
@@ -86,17 +92,15 @@ const UsersPage = () => {
   const handleRowClick = (row) => {
     window.location.href = `/users/${row.name.toLowerCase()}`;
   };
-  const handleEdit = (row) => {
-    console.log('Edit user:', row.name);
-    // Example: navigate to user edit page
-    // router.push(`/users/edit/${row.id}`);
+  const handleEdit = (user) => {
+    setSelectedUser(user);
+    setEditModalOpen(true);
   };
 
   const handleBlockToggle = (row) => {
     console.log(
       `${row.name} is now ${row.status === 'Inactive' ? 'Active' : 'Inactive'}`
     );
-    // Example: toggle logic
   };
 
   const columns = [
@@ -139,7 +143,10 @@ const UsersPage = () => {
         <OutlineButton
           title="Edit"
           color="secondary"
-          onClick={() => handleEdit(row)}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleEdit(row);
+          }}
         />
       ),
     },
@@ -183,6 +190,29 @@ const UsersPage = () => {
         totalPages={Math.ceil(filtered.length / pageSize)}
         onPageChange={setCurrentPage}
       />
+
+      <FAB onClick={() => setIsModalOpen(true)} />
+
+      <CreateUserModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onCreate={(newUser) => {
+          console.log('User created:', newUser);
+          setIsModalOpen(false);
+        }}
+      />
+
+      <EditUserModal
+        isOpen={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        userData={selectedUser}
+        onUpdate={(updatedUser) => {
+          console.log('Updated user:', updatedUser);
+          setEditModalOpen(false);
+          // يمكنك تحديث الحالة لاحقًا لإعادة تحميل الجدول
+        }}
+      />
+
     </div>
   );
 };

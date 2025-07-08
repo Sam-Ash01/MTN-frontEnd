@@ -33,7 +33,6 @@ function StatCard({ title, count, icon: Icon, iconColorVar }) {
   );
 }
 
-// Convert hex color to RGB
 function hexToRgb(hex) {
   const cleanHex = hex.replace('#', '');
   if (cleanHex.length !== 6) return null;

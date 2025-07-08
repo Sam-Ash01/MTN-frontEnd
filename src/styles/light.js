@@ -26,6 +26,11 @@ export const lightTheme = {
 
   '--color-status-pending-bg': '#FEF3C7',  
   '--color-status-open-bg': '#E0F2FE',      
-  '--color-status-closed-bg': '#FEE2E2',   
+  '--color-status-closed-bg': '#FEE2E2', 
+  
+  '--color-category-one': '#006790',  
+  '--color-category-two': '#F9BBBF',      
+  '--color-category-three': '#FFF0B4', 
 
+  '--color-trainer-task':'#DBEAFE'
 };

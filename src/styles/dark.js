@@ -16,4 +16,10 @@ export const darkTheme = {
 
   '--color-cancel-back-btn-txt': '#E5E7EB',
   '--color-cancel-back-btn-hover': '#4B5563',
+
+  '--color-category-one': '#4FC3F7',  
+  '--color-category-two': '#F48FB1',      
+  '--color-category-three': '#FFE082', 
+
+  '--color-trainer-task':'#294652'
 };

@@ -14,11 +14,12 @@ const buttonStyles = {
   },
 };
 
-const OutlineButton = ({ title, color = 'secondary' }) => {
+const OutlineButton = ({ title, color = 'secondary', onClick }) => {
   const styles = buttonStyles[color] || buttonStyles.secondary;
 
   return (
     <button
+      onClick={onClick}
       className={clsx(
         'rounded-full font-medium text-sm',
         'px-2 py-1 md:px-4 md:py-1.5', // responsive padding

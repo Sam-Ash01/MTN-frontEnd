@@ -1,15 +1,3 @@
-// src/routes/RouteConfig.js
-
-// 1: مدير
-
-// 2: مشرف
-
-// 3: مدرب
-
-// 4: مستخدم
-
-// 5: مساعد
-
 import HomePage from "../pages/Home/HomePage";
 import UserHome from "../pages/Home/UserHome";
 import Users from "../pages/Users/Users";
@@ -29,7 +17,7 @@ import HomeWrapper from "../pages/HomeWrapper/HomeWrapper";
 const routes = [
   // home routes
   {
-  path: '/home',
+  path: '/',
   element: <HomeWrapper />,
   roles: [1, 2, 4, 5], // الكل باستثناء المدرب
 },
