@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# MTN Syria - Trainer Tracking System (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the **frontend** interface for the **Trainer Tracking System** developed for **MTN Syria**. The system is designed to streamline and manage inquiries sent to the training department by customer service employees, replacing the traditional email-based process.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌟 Overview
 
-### `npm start`
+The system allows employees to send structured inquiries under specific categories. These inquiries are assigned by supervisors to the appropriate trainers. Trainers can respond to the inquiries, track their statuses, and attach supporting documents if necessary.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The platform also supports evaluation of trainer responses, performance reporting based on KPIs, and internal tracking between departments — all wrapped within MTN’s visual identity and security requirements.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 💻 Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React.js** – for building the user interface
+- **Tailwind CSS** – for styling with MTN's visual identity
+- **React Router** – for page navigation
+- **Responsive design** – works across devices
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔐 User Roles & Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🔸 **User (Employee)**
+- Submit inquiries under specific categories (can include manual references)
+- View all submitted inquiries
+- Re-open closed inquiries if the answer is unclear
+- Save inquiries to favorites for quick access
+- Rate trainer responses
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🔸 **Trainer**
+- Respond to assigned inquiries
+  - Change status to `pending` if follow-up is needed
+  - Mark as `closed` when answered
+- Upload supporting attachments
+- View personal performance reports and department-level statistics
 
-### `npm run eject`
+### 🔸 **Supervisor**
+- Create and assign categories to trainers
+- Reassign inquiries
+- Evaluate trainer responses
+- Generate and export dynamic reports (Excel format)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🔸 **Manager**
+- Add users and assign roles (e.g., Supervisor)
+- Full control over trainer assignments
+- Export Excel-based performance reports based on custom KPIs
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🔸 **Assistant**
+- Help respond to inquiries on behalf of trainers
+- Reassign inquiries to other assistants if needed
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📊 System Features
 
-## Learn More
+- Inquiry lifecycle tracking (`opened`, `pending`, `closed`)
+- Email notifications for:
+  - New inquiries
+  - Trainer replies
+  - Unattended inquiries
+- Performance tracking:
+  - Average response time (excluding weekends/holidays)
+  - Average rating of trainer responses
+- Security: automatic deletion of old closed inquiries (configurable by manager)
+- MTN brand identity compliance
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📱 Mobile Support
 
-### Code Splitting
+A dedicated mobile version is planned for:
+- Trainers
+- Supervisors
+- Managers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🚀 Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- This repository contains the **frontend only**.
+- Backend integration (authentication, database, email, etc.) is assumed to be managed separately.
+- Project structure is modular and supports extension for new features.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📦 Getting Started
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm install
+npm run start
